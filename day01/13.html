@@ -8,19 +8,19 @@
 		/**
 		 * 自定义全局过滤器
 		 */
-		Vue.filter('addZero',function(data){
-			// console.log(data);
+		Vue.filter('addZero',function(data){ // 为个位补零过滤器
+			// console.log(data); data就是我们要操作的那个数据，此处是3
 			return data<10?'0'+data:data;
 		});
-		/*Vue.filter('number',(data,n) => {
+		/*Vue.filter('number',(data,n) => { // 函数的参数可以有多个，第一个参数就是要操作的值，后面的参数依次表示为这个过滤器传入的参数
 			// console.log(data,n);
-			return data.toFixed(n);
+			return data.toFixed(n); //toFixed天生就有瑕疵，四舍五入的很不稳定，没有好的方法就是自己去重写实现
 		});*/
 		Vue.filter('date',data => {
 			let d=new Date(data);
 			return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate()+' '+d.getHours()+':'+d.getMinutes()+':'+d.getSeconds();
 		});
-		
+
 
 		window.onload=function(){
 			let vm=new Vue({
@@ -39,14 +39,16 @@
 </head>
 <body>
 	<div id="itany">
-		<!-- <h3>{{3 | addZero}}</h3> -->
-		
+		<!-- <h3>{{3 | addZero}}</h3> --> <!-- 过滤器使用此处本身没有参数 -->
+
 		<!-- 课后作业：自己实现toFiexed()四舍五入的功能 -->
 		<h3>{{12.345678 | number(2)}}</h3>
 		<!-- <h3>{{12.045 | number(2)}}</h3> -->
 
+		<!-- currentTime 是当前时间的毫秒值 -->
 		<h3>{{currentTime | date}}</h3>
-	
+
+
 	</div>
 </body>
 </html>
